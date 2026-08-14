@@ -1,0 +1,20 @@
+# --- Foundation Layer: FARO ---
+# Solo dependencias de infraestructura. Sin librerías de auth (passlib, jose, etc.)
+# ni de negocio: se agregan en fases posteriores.
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# Base de datos
+sqlalchemy==2.0.36
+asyncpg==0.30.0
+psycopg2-binary==2.9.10
+alembic==1.14.0
+
+# Redis
+redis==5.2.1
+
+# Configuración / entorno
+pydantic==2.10.4
+pydantic-settings==2.7.0
+python-dotenv==1.0.1

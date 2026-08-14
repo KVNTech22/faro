@@ -1,0 +1,86 @@
+version: "3.9"
+
+services:
+  faro-postgres:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    image: postgres:16-alpine
+    container_name: faro-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - faro_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - faro-network
+
+  faro-redis:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    image: redis:7-alpine
+    container_name: faro-redis
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+    volumes:
+      - faro_redis_data:/data
+    ports:
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - faro-network
+
+  faro-api:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: faro-api
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      faro-postgres:
+        condition: service_healthy
+      faro-redis:
+        condition: service_healthy
+    expose:
+      - "8000"
+    volumes:
+      - ./app:/app/app
+      - ./alembic:/app/alembic
+      - ./alembic.ini:/app/alembic.ini
+    networks:
+      - faro-network
+
+networks:
+  faro-network:
+    name: faro-network
+    driver: bridge
+
+volumes:
+  faro_postgres_data:
+    name: faro_postgres_data
+  faro_redis_data:
+    name: faro_redis_data
+
+
