@@ -93,7 +93,7 @@ RF-014 Reintentar automáticamente.
 
 ## Ubicación
 
-RF-015 Solo durante emergencias.
+RF-015 Compartir ubicación únicamente durante emergencias activas o SOS manual.
 
 RF-016 Seguimiento temporal:
 

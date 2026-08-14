@@ -44,8 +44,6 @@ phone_verified BOOLEAN DEFAULT FALSE
 
 password_hash VARCHAR
 
-google_id VARCHAR NULL
-
 google_id VARCHAR(255) NULL
 
 first_name VARCHAR
@@ -59,6 +57,12 @@ birth_date DATE NULL
 avatar_url VARCHAR NULL
 
 is_active BOOLEAN DEFAULT TRUE
+
+is_deleted BOOLEAN DEFAULT FALSE
+
+last_seen_at TIMESTAMP NULL
+
+timezone VARCHAR(100) DEFAULT 'America/Bogota'
 
 created_at
 updated_at
@@ -552,3 +556,16 @@ SAFE
 HELP
 
 created_at
+
+## Primary Keys
+
+All business entities must use UUID as primary key.
+
+Examples:
+
+- users
+- circles
+- pets
+- dependents
+- emergency_events
+- emergency_responses
