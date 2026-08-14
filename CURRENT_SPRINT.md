@@ -1,24 +1,5 @@
 # Current Sprint
 
-Sprint:
-01
+Phase 3
 
-Goal:
-
-Backend Foundation
-
-Tasks:
-
-- Docker Compose
-- FastAPI
-- PostgreSQL
-- Redis
-- Alembic
-
-Done:
-
-None
-
-Blocked:
-
-None
+Users & Medical Profiles

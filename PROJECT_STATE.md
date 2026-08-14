@@ -29,3 +29,38 @@ Phase 1
 Status:
 
 Ready For Development
+
+## Completed
+
+### Phase 1 - Foundation Layer
+Status: COMPLETED
+
+### Phase 2 - Authentication
+Status: COMPLETED
+
+Implemented:
+
+- Register
+- Email Verification
+- Login
+- Refresh Token
+- Logout
+- Forgot Password
+- Reset Password
+- Google Sign-In
+- Current User
+
+Security:
+
+- Argon2id
+- JWT
+- Refresh token hashing
+- Email verification token hashing
+- Password reset token hashing
+
+Database:
+
+- users
+- refresh_tokens
+- email_verification_tokens
+- password_reset_tokens
