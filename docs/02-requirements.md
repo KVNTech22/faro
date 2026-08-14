@@ -140,3 +140,13 @@ RF-021 Relación responsable-dependiente.
 RF-022 Registro de mascotas.
 
 Ficha independiente.
+
+RF-032 Confirmación grupal
+
+Un usuario podrá confirmar el estado de otros miembros que se encuentren físicamente con él durante una emergencia.
+
+Reglas:
+
+- Solo miembros del mismo círculo.
+- No puede sobrescribir estados críticos.
+- Puede confirmar múltiples usuarios.

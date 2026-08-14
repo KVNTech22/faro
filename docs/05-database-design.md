@@ -333,6 +333,12 @@ radius_km
 created_at
 updated_at
 
+notification_magnitude NUMERIC(2,1)
+
+protocol_magnitude NUMERIC(2,1)
+
+auto_protocol_enabled BOOLEAN
+
 ---
 
 # DEVICE TOKENS
@@ -515,3 +521,24 @@ No implementar todavía.
 - Hospitals
 - Shelters
 - Volunteers
+
+# STATUS CONFIRMATIONS
+
+Registro de confirmaciones realizadas por terceros.
+
+status_confirmations
+
+id UUID PK
+
+emergency_id UUID FK emergencies
+
+confirmed_user_id UUID FK users
+
+confirmed_by_user_id UUID FK users
+
+status
+
+SAFE
+HELP
+
+created_at
