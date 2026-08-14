@@ -1,6 +1,6 @@
 Proyecto: FARO
 
-Lee:
+Lee obligatoriamente:
 
 PROJECT_CONTEXT.md
 CURRENT_SPRINT.md
@@ -8,8 +8,9 @@ docs/05-database-design.md
 docs/06-api-spec.md
 docs/07-security.md
 docs/13-authentication-design.md
+docs/14-emergency-engine.md
 
-Foundation Layer ya está aprobada.
+Foundation Layer ya fue aprobada y no debe modificarse.
 
 Implementar exclusivamente:
 
@@ -19,7 +20,7 @@ Objetivo:
 
 Crear el módulo completo de autenticación para FARO.
 
-Tecnologías:
+Tecnologías obligatorias:
 
 - FastAPI
 - PostgreSQL
@@ -28,7 +29,7 @@ Tecnologías:
 - JWT
 - Argon2id
 
-Requisitos:
+Funcionalidades:
 
 1. Register
 2. Verify Email
@@ -40,18 +41,37 @@ Requisitos:
 8. Google Sign-In
 9. Get Current User
 
+Tablas obligatorias:
+
+- users
+- refresh_tokens
+- email_verification_tokens
+- password_reset_tokens
+
+Todos los IDs deben ser UUID.
+
+Todos los tokens deben almacenarse hasheados.
+
+Nunca almacenar:
+
+- passwords en texto plano
+- refresh tokens en texto plano
+- verification tokens en texto plano
+- reset tokens en texto plano
+
 Reglas obligatorias:
 
-- UUID para IDs
 - Argon2id para passwords
-- Access Token 15 minutos
-- Refresh Token 30 días
-- Refresh Token almacenado hasheado
+- Access Token: 15 minutos
+- Refresh Token: 30 días
+- Refresh Token hasheado
 - Email obligatorio
 - Teléfono obligatorio
 - Email verification requerida
-- Compatible con Authentication Design
-- Compatible con API Spec
+- Compatible con docs/05-database-design.md
+- Compatible con docs/06-api-spec.md
+- Compatible con docs/07-security.md
+- Compatible con docs/13-authentication-design.md
 
 Entregar:
 
@@ -63,6 +83,8 @@ Entregar:
 6. Routers
 7. Dependencias nuevas necesarias
 8. Variables de entorno nuevas
+9. Flujo completo de autenticación
+10. Pasos para integración futura con Firebase y Android
 
 No implementar:
 
@@ -71,5 +93,15 @@ No implementar:
 - Dependents
 - Emergency Engine
 - Notifications
+- Firebase
+- FCM
+- SMS
+- WhatsApp
+
+No modificar:
+
+- Arquitectura
+- Base de datos fuera de Authentication
+- Foundation Layer
 
 Solo Authentication.
