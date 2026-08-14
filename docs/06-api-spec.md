@@ -60,6 +60,226 @@ Response
 
 ---
 
+# Authentication API
+
+---
+
+## Register
+
+POST /auth/register
+
+Request
+
+```json
+{
+  "email": "usuario@correo.com",
+  "password": "Password123",
+  "phone": "+573001234567",
+  "full_name": "Andrés Pérez"
+}
+```
+
+Response
+
+```json
+{
+  "message": "User registered successfully",
+  "email_verification_sent": true
+}
+```
+
+---
+
+## Verify Email
+
+POST /auth/verify-email
+
+Request
+
+```json
+{
+  "token": "verification_token"
+}
+```
+
+Response
+
+```json
+{
+  "message": "Email verified successfully"
+}
+```
+
+---
+
+## Login
+
+POST /auth/login
+
+Request
+
+```json
+{
+  "email": "usuario@correo.com",
+  "password": "Password123"
+}
+```
+
+Response
+
+```json
+{
+  "access_token": "jwt_token",
+  "refresh_token": "refresh_token",
+  "token_type": "bearer",
+  "expires_in": 900
+}
+```
+
+---
+
+## Refresh Token
+
+POST /auth/refresh
+
+Request
+
+```json
+{
+  "refresh_token": "refresh_token"
+}
+```
+
+Response
+
+```json
+{
+  "access_token": "new_access_token",
+  "token_type": "bearer",
+  "expires_in": 900
+}
+```
+
+---
+
+## Logout
+
+POST /auth/logout
+
+Headers
+
+Authorization: Bearer access_token
+
+Request
+
+```json
+{
+  "refresh_token": "refresh_token"
+}
+```
+
+Response
+
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+---
+
+## Forgot Password
+
+POST /auth/forgot-password
+
+Request
+
+```json
+{
+  "email": "usuario@correo.com"
+}
+```
+
+Response
+
+```json
+{
+  "message": "Password reset email sent"
+}
+```
+
+---
+
+## Reset Password
+
+POST /auth/reset-password
+
+Request
+
+```json
+{
+  "token": "reset_token",
+  "new_password": "NewPassword123"
+}
+```
+
+Response
+
+```json
+{
+  "message": "Password updated successfully"
+}
+```
+
+---
+
+## Google Sign-In
+
+POST /auth/google
+
+Request
+
+```json
+{
+  "id_token": "google_id_token"
+}
+```
+
+Response
+
+```json
+{
+  "access_token": "jwt_token",
+  "refresh_token": "refresh_token",
+  "token_type": "bearer",
+  "expires_in": 900,
+  "is_new_user": false
+}
+```
+
+---
+
+## Get Current User
+
+GET /auth/me
+
+Headers
+
+Authorization: Bearer access_token
+
+Response
+
+```json
+{
+  "id": "uuid",
+  "email": "usuario@correo.com",
+  "full_name": "Andrés Pérez",
+  "phone": "+573001234567",
+  "email_verified": true,
+  "phone_verified": false
+}
+```
+
 ## Google Login
 
 POST /auth/google

@@ -36,21 +36,29 @@ id UUID PK
 
 email VARCHAR UNIQUE
 
+email_verified BOOLEAN DEFAULT FALSE
+
 phone VARCHAR UNIQUE
+
+phone_verified BOOLEAN DEFAULT FALSE
 
 password_hash VARCHAR
 
 google_id VARCHAR NULL
 
+google_id VARCHAR(255) NULL
+
 first_name VARCHAR
 
 last_name VARCHAR
+
+last_login_at TIMESTAMP NULL
 
 birth_date DATE NULL
 
 avatar_url VARCHAR NULL
 
-is_active BOOLEAN
+is_active BOOLEAN DEFAULT TRUE
 
 created_at
 updated_at
