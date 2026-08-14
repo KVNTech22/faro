@@ -2,10 +2,6 @@ version: "3.9"
 
 services:
   faro-postgres:
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
     image: postgres:16-alpine
     container_name: faro-postgres
     restart: unless-stopped
@@ -16,7 +12,7 @@ services:
     volumes:
       - faro_postgres_data:/var/lib/postgresql/data
     ports:
-      - "127.0.0.1:5433:5432"
+      - "127.0.0.1:5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
@@ -26,10 +22,6 @@ services:
       - faro-network
 
   faro-redis:
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
     image: redis:7-alpine
     container_name: faro-redis
     restart: unless-stopped
@@ -47,10 +39,6 @@ services:
       - faro-network
 
   faro-api:
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "3"
     build:
       context: .
       dockerfile: Dockerfile
@@ -63,8 +51,8 @@ services:
         condition: service_healthy
       faro-redis:
         condition: service_healthy
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     volumes:
       - ./app:/app/app
       - ./alembic:/app/alembic
@@ -82,5 +70,3 @@ volumes:
     name: faro_postgres_data
   faro_redis_data:
     name: faro_redis_data
-
-

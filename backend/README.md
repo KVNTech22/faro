@@ -1,8 +1,13 @@
-# FARO — Foundation Layer
+# FARO Backend
 
-Capa de infraestructura base (FastAPI + PostgreSQL 16 + Redis + Docker +
-Alembic). Sin endpoints de negocio, sin autenticación, sin modelos
-funcionales. Ver `ESTRUCTURA.md` para el árbol completo.
+- **Phase 1 — Foundation Layer**: infraestructura base (FastAPI +
+  PostgreSQL 16 + Redis + Docker + Alembic), sin endpoints de negocio.
+  Ver `ESTRUCTURA.md`.
+- **Phase 2 — Authentication**: módulo completo de autenticación
+  (register, login, refresh, logout, forgot/reset password, Google
+  Sign-In, get current user). Ver `AUTHENTICATION.md` para la
+  documentación completa (estructura, modelos, flujo, integración
+  futura con Firebase/Android).
 
 ## Instrucciones — Ubuntu 24.04
 
@@ -41,7 +46,11 @@ cd faro-backend
 
 ```bash
 cp .env.example .env
-nano .env   # completar POSTGRES_PASSWORD y REDIS_PASSWORD con valores reales
+nano .env
+# Completar como mínimo:
+#   POSTGRES_PASSWORD, REDIS_PASSWORD
+#   JWT_SECRET_KEY   -> generar con: openssl rand -hex 64
+#   GOOGLE_CLIENT_ID -> Client ID de la app Android (para /auth/google)
 ```
 
 ### 4. Levantar la infraestructura
@@ -68,11 +77,15 @@ Respuesta esperada:
 
 ### 6. Alembic (migraciones)
 
-El entorno de Alembic ya está configurado (`alembic.ini`, `alembic/env.py`)
-y apunta a la base de datos vía las variables del `.env`. Por ahora
-`app/db/base.py` no tiene modelos, así que no hay nada que migrar todavía.
+Ya existe una migración (`Phase 2 — Authentication`) que crea `users`,
+`refresh_tokens`, `email_verification_tokens` y `password_reset_tokens`.
+Aplicarla dentro del contenedor:
 
-Cuando existan modelos (fase siguiente), desde dentro del contenedor:
+```bash
+docker compose exec faro-api alembic upgrade head
+```
+
+Para futuras fases, generar migraciones con autogenerate:
 
 ```bash
 docker compose exec faro-api alembic revision --autogenerate -m "mensaje"
@@ -96,12 +109,12 @@ docker compose down          # detiene contenedores, conserva volúmenes
 docker compose down -v       # detiene y borra volúmenes (datos de DB/Redis)
 ```
 
-## Qué NO incluye esta capa
+## Qué NO incluye el proyecto todavía (Phase 3+)
 
-- Endpoints de negocio (alertas, círculos, dependientes, mascotas, perfil
-  médico, ubicación, confirmación grupal).
-- Autenticación / autorización (JWT, OAuth, roles OWNER/ADMIN/MEMBER).
-- Modelos de base de datos funcionales.
+- Circles, Dependents, Pets, perfil médico funcional, ubicación,
+  confirmación grupal.
+- Emergency Engine (alertas sísmicas, SOS, escalamiento).
+- Firebase / FCM / notificaciones push, SMS, WhatsApp.
 - Cambios a la arquitectura definida en `docs/03-architecture.md`.
 
 Todo eso corresponde a fases posteriores del roadmap (`docs/08-roadmap.md`,

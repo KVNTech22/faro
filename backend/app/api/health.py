@@ -12,7 +12,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
-from backend.app.db.database import get_db
+from app.core.database import get_db
 
 router = APIRouter(tags=["health"])
 
