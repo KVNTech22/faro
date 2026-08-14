@@ -154,6 +154,8 @@ MEMBER
 
 is_priority BOOLEAN
 
+is_primary_contact BOOLEAN DEFAULT FALSE
+
 joined_at
 
 created_at

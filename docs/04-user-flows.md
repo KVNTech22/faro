@@ -137,3 +137,44 @@ Durante una emergencia:
 - Información relevante
 
 puede consultarse junto a la ficha familiar.
+
+
+## Flujo 7 - Confirmación grupal
+
+Usuario responde:
+
+SAFE
+
+↓
+
+Selecciona:
+
+Laura
+Juan
+Sofía
+
+↓
+
+Sistema registra:
+
+SAFE
+SAFE
+SAFE
+SAFE
+
+
+## Flujo 8 - Contacto rápido
+
+Usuario abre perfil
+
+↓
+
+Selecciona:
+
+📞 Llamar
+o
+💬 WhatsApp
+
+↓
+
+Android abre aplicación correspondiente

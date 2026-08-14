@@ -150,3 +150,45 @@ Reglas:
 - Solo miembros del mismo círculo.
 - No puede sobrescribir estados críticos.
 - Puede confirmar múltiples usuarios.
+
+RF-033 Contacto principal por círculo
+
+Cada círculo podrá tener un contacto principal.
+
+Restricciones:
+
+- Máximo un contacto principal por círculo.
+- Debe ser OWNER o ADMIN.
+- Se mostrará destacado durante emergencias.
+
+
+RF-034 Llamada rápida
+
+Los miembros de un círculo podrán llamar rápidamente a otros miembros desde la aplicación.
+
+La aplicación abrirá el marcador del sistema con el número precargado.
+
+
+RF-035 Acceso rápido a WhatsApp
+
+Los miembros podrán abrir una conversación de WhatsApp directamente desde el perfil de otro miembro.
+
+RF-036 Acciones rápidas
+
+Desde el perfil de un miembro se podrá:
+
+- Llamar
+- Abrir WhatsApp
+- Enviar SMS
+- Enviar correo
+- Navegar hacia su ubicación
+
+
+RF-037 Navegación
+
+Cuando un usuario esté en:
+
+- AYUDA
+- RIESGO_ALTO
+
+Los miembros autorizados podrán abrir Google Maps con navegación directa hacia la ubicación reportada.

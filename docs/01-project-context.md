@@ -46,6 +46,10 @@ Reducir el tiempo necesario para saber quién está bien y quién necesita ayuda
 - Compartir ficha médica.
 - Gestionar grupos familiares.
 - Operar con conectividad limitada.
+- Coordinación familiar rápida
+- Contacto inmediato entre miembros
+- Localización durante emergencias
+- Gestión de mascotas
 
 ---
 

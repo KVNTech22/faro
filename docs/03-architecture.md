@@ -88,3 +88,10 @@ Canales:
 - Refresh Token
 - Cloudflare
 - Rate Limiting
+
+## Responsabilidades
+
+- Llamadas rápidas
+- Integración WhatsApp
+- Navegación Google Maps
+- Confirmación grupal
